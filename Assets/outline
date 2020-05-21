@@ -1,0 +1,16 @@
+create tables
+create seeds
+Departments : Sales, Engineering, Legal, Finance
+Roles: Sales - Sales Person, Sales Lead, Sales Manager.
+       Engineering - Software Engineer, Lead Engineer, Engineering Manager
+       Legal - Lawyer, Legal Lead, Legal Manager
+       Finance - Accountant, Accounting Manager
+
+Inquirer:
+What would you like to do?
+    -READ FUNCTIONS: SELECT * FROM
+    -View deparments (Sales, Engineering, Legal, Finance) - View all employees in a department based on role id (Employee table and Role table). 11, 12, 13 are Sales, 21, 22, 23 are Engineering, 31, 32, 33 are Legal, 41, 42 are Finance
+    -View Roles (Sales Person, Sales Lead, Sales Manager, Software Engineer, Lead Engineer, Engineering Manager, Lawyer, Legal Lead, Legal Manager, Accountant, Accounting Manager) - When role is selected, employees with that role id are displayed.
+    -View employees
+
+
