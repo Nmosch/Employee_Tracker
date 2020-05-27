@@ -44,6 +44,7 @@ const initialQuestion = (connection) => {
                     deleteEmployee(connection);
                     break;
                 case "I'm finished":
+                    console.log("Thank you!")
                     connection.end();
                     break;
             }
@@ -132,6 +133,7 @@ const addDepartment = async (connection) => {
 }
 
 const addRole = async (connection) => {
+    let [rows] = await connection.query("Select id, dept_name AS Department FROM department");
     return inquirer
         .prompt([{
             type: "input",
@@ -141,10 +143,16 @@ const addRole = async (connection) => {
             type: "input",
             message: "What is the annual salary for this role?",
             name: "roleSalary"
+        },{
+            type: "list",
+            message: "To which department will this role belong?",
+            name: "dept",
+            choices: rows.map(dept => dept.Department)
         }]).then((answer) => {
             let newRole = answer.newRole;
             let newSalary = answer.roleSalary;
-            const params = { title: `${newRole}`, salary: `${newSalary}` };
+            let newDept = rows.find(dept => dept.Department === answer.dept).id;
+            const params = { title: `${newRole}`, salary: `${newSalary}`, department_id: `${newDept}`};
             connection.query("INSERT INTO role SET ?", params, (err, res) => {
                 if (err) { throw err };
                 console.log("New role added");
